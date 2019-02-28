@@ -1,0 +1,23 @@
+.welcome-card ion-img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+
+.h-nav {
+  height: 50px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  a {
+    padding: 0 15px;
+    color: #9C9C9C;
+    text-decoration: none;
+    &:focus span {
+      color: #DB4437;
+    }
+    &:active span {
+      color: #DB4437;
+    }
+  }
+}
