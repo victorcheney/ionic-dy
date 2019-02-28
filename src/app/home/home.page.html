@@ -10,9 +10,13 @@
 </ion-header>
 
 <ion-content>
- <div class="h-nav">
-  <a href="javascript:void(0)" *ngFor="let item of navs">
-    <span>{{item.text}}</span>
-  </a>
- </div>
+  <div class="h-nav">
+    <a href="javascript:void(0)" *ngFor="let item of navs; let i = index" [ngClass]="{'active': tabIndex == i}" (click)="toggleTabs(i)">
+      <span>{{item.text}}</span>
+    </a>
+  </div>
+
+  <!-- start 轮播 -->
+  <app-home-slider></app-home-slider>
+  <!-- end 轮播 -->
 </ion-content>

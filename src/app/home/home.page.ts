@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage {
   private navs = [
@@ -27,5 +27,12 @@ export class HomePage {
       text: '综艺',
       href: ''
     },
-  ]
+  ];
+  private tabIndex: number = 0;
+  constructor() {
+  }
+
+  toggleTabs(index: number) {
+    this.tabIndex = index;
+  }
 }

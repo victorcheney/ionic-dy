@@ -9,15 +9,47 @@
   display: flex;
   justify-content: start;
   align-items: center;
+
   a {
-    padding: 0 15px;
+    position: relative;
+    padding: 0 15px 5px;
     color: #9C9C9C;
     text-decoration: none;
-    &:focus span {
+    font-weight: 600;
+
+    /* &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 30%;
+      width: 40%;
+      height: 3px;
+      border-radius: 10px;
+      background-color: #DB4437;
+    } */
+  }
+  a.active {
+    span {
       color: #DB4437;
     }
-    &:active span {
-      color: #DB4437;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 30%;
+      width: 40%;
+      height: 3px;
+      border-radius: 10px;
+      background-color: #DB4437;
     }
   }
+}
+
+.swiper-pagination {
+  text-align: right !important;
+  padding-right: 20px;
+}
+
+ion-header {
+  background: #DB4437;
 }
