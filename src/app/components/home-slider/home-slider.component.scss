@@ -1,11 +1,33 @@
 // app-home-slider {
 .home-slides-item {
-  min-height: 180px;
+  min-height: 145px;
 }
 
 .home-slides .swiper-pagination {
   text-align: right !important;
   padding-right: 20px;
+}
+
+.bullets {
+  background: #ffffff;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
+  color: #fff;
+
+  strong {
+    position: absolute;
+    bottom: 25px;
+  }
+
+  img {
+    width: 100%;
+    min-height: 165px;
+  }
 }
 
 // }

@@ -1,11 +1,8 @@
 <ion-slides class="home-slides" pager="true" [options]="slideOpts">
-  <ion-slide class="home-slides-item">
-    <h1>Slide 1</h1>
-  </ion-slide>
-  <ion-slide class="home-slides-item">
-    <h1>Slide 2</h1>
-  </ion-slide>
-  <ion-slide class="home-slides-item">
-    <h1>Slide 3</h1>
+  <ion-slide class="home-slides-item" *ngFor="let item of datas; let i = index" no-padding>
+    <div class="banner-container">
+      <strong>{{ item.name }}</strong>
+      <img [src]="item.cover" alt="">
+    </div>
   </ion-slide>
 </ion-slides>
