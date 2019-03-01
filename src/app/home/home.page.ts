@@ -9,7 +9,7 @@ import { ArrayType } from '@angular/compiler';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  private navs = [
+  public navs = [
     {
       text: '首页',
       href: ''
