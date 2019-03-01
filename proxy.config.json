@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://m.kankanwu.com/",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}

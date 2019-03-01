@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpService } from '../../providers/http.service';
+import { ArrayType } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-  private navs = [
+  public navs = [
     {
       text: '首页',
       href: ''
@@ -29,7 +32,19 @@ export class HomePage {
     },
   ];
   private tabIndex: number = 0;
-  constructor() {
+  URLM: string = '/api';
+  bannerData: any = []; // 轮播数据
+  constructor(private httpService: HttpService) {
+    this.fetchHomeData(this.URLM, {});
+  }
+
+  fetchHomeData(url:string, params:any) {
+    this.httpService.fetchHomeData(url, params)
+    .then(resp => {
+
+      this.bannerData = resp;
+
+    })
   }
 
   toggleTabs(index: number) {

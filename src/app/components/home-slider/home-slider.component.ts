@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-home-slider',
@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-slider.component.scss'],
 })
 export class HomeSliderComponent implements OnInit {
+  @Input() datas: any[]
 
   slideOpts = {
-    effect: 'flip'
+    effect: 'flip',
+    autoplay: true,
+    loop: true,
+    bulletClass: 'swiper-pagination-bullet bullets'
   };
 
   constructor() { }
