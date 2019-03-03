@@ -5,5 +5,12 @@
       "^/api": ""
     },
     "changeOrigin": true
+  },
+  "/details": {
+    "target": "https://www.kankanwu.com/",
+    "pathRewrite": {
+      "^/details": ""
+    },
+    "changeOrigin": true
   }
 }

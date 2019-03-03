@@ -11,8 +11,7 @@ export class HomeSliderComponent implements OnInit {
   slideOpts = {
     effect: 'flip',
     autoplay: true,
-    loop: true,
-    bulletClass: 'swiper-pagination-bullet bullets'
+    loop: true
   };
 
   constructor() { }

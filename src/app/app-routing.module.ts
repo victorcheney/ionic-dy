@@ -22,15 +22,18 @@ const routes: Routes = [
   {
     path: 'theme',
     loadChildren: './theme/theme.module#ThemePageModule'
-  }/* ,
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  } */
+  },
+  { path: 'detail/:id', loadChildren: './detail/detail.module#DetailPageModule' },
+
+  /* ,
+    {
+      path: 'list',
+      loadChildren: './list/list.module#ListPageModule'
+    } */
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

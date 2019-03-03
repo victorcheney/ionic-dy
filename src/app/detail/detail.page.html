@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="back-button" slot="start" [routerLink]="['/home']">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-title>{{ detailInfo.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content no-padding>
+  <div class="detail-bg">
+    <ion-img class="cover-bg" [src]="detailInfo.cover"></ion-img>
+  </div>
+  <!-- 详情banner -->
+  <ion-card class="detail-banner">
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row no-padding>
+          <ion-col size="4">
+            <ion-img [src]="detailInfo.cover"></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <ion-title no-padding>
+              <ion-text color="danger">{{ detailInfo.name }}</ion-text>
+            </ion-title>
+            <ion-text color="danger">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-half"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+              <span>7.8</span>
+            </ion-text>
+            <div>
+              <ion-text color="secondary">
+                <span>{{ detailInfo.movieTitle }}</span>
+              </ion-text>
+            </div>
+            <div>{{ detailInfo.tags }}</div>
+            <div>{{ detailInfo.releaseDate }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 选集 -->
+  <ion-card>
+    <ion-card-header>
+      <ion-icon name="cube" color="danger"></ion-icon>
+      <span>选集({{detailInfo.moviePlayUrls.length}})</span>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col size="6" *ngFor="let item of detailInfo.moviePlayUrls">
+            <div class="seletc-video">
+              {{ item.name }}
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 剧情简介 -->
+  <ion-card class="synopsis">
+    <ion-card-header>
+      <ion-icon name="compass" color="danger"></ion-icon>
+      <span>简介</span>
+    </ion-card-header>
+    <ion-card-content>
+      <div [innerHTML]="detailInfo.introduction"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 同名资源 -->
+  <ion-card class="relate-list">
+    <ion-card-header>
+      <ion-icon name="cloud" color="danger"></ion-icon>
+      <span>猜你喜欢</span>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col size="4" *ngFor="let item of detailInfo.relateList">
+            <ion-card no-margin [routerLink]="['/detail', item.id]">
+              <!--  -->
+              <ion-card-content no-padding>
+                <ion-img [src]="item.cover"></ion-img>
+              </ion-card-content>
+              <ion-card-header>
+                <ion-card-subtitle>{{ item.name }}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

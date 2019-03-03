@@ -53,3 +53,24 @@
 https://www.jianshu.com/p/ddf574337c47
 
 cheerio 最新为 1.0.0-rc2版本，降到0.22.0版本即可解决上述问题
+
+4、动态加载背景图 background-image
+
+引入安全模块,DomSanitizer有助于防止跨站点脚本安全漏洞（XSS），通过清除值以便在不同的DOM上下文中安全使用。
+
+```code
+import { DomSanitizer } from '@angular/platform-browser';
+```
+
+html
+
+```code
+ <div class="detail-bg" [style.background-image]="image">
+  </div>
+```
+
+ts文件
+
+```code
+ this.image = this.sanitization.bypassSecurityTrustStyle(`url(${this.detailInfo.cover})`)
+```
