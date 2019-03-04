@@ -27,20 +27,29 @@ export class VideoplayerComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    this.playlist = this.videolist.map(item => {
-      return {
-        title: item.name,
-        src: item.playUrl,
-        type: 'video/mp4'
-      }
-    });
 
+    if (this.videolist) {
+      this.playlist = this.videolist.map(item => {
+        return {
+          title: item.name,
+          src: item.playUrl,
+          type: 'video/mp4'
+        }
+      });
+    }
+
+    this.currentItem = this.playlist[this.currentIndex];
     this.onClickPlaylistItem(this.playlist[this.seletedindex], this.seletedindex);
+
   }
 
   playlist: Array<IMedia> = [];
   currentIndex = 0;
-  currentItem: IMedia = this.playlist[this.currentIndex];
+  currentItem: IMedia = {
+    title: '',
+    src: '',
+    type: ''
+  };
   api: VgAPI;
   actionPlayUrl: string;
 
@@ -50,6 +59,11 @@ export class VideoplayerComponent implements OnInit {
 
     this.api.getDefaultMedia().subscriptions.loadedMetadata.subscribe(this.playVideo.bind(this));
     this.api.getDefaultMedia().subscriptions.ended.subscribe(this.nextVideo.bind(this));
+  }
+
+  ngAfterViewChecked(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
   }
 
   nextVideo() {
@@ -83,7 +97,7 @@ export class VideoplayerComponent implements OnInit {
   async getPlayUrl(url: string) {
     let tempUrl = url.split('com')[1];
 
-    await this.httpService.fetchPlayUrl(`/play${tempUrl}`);
+    return this.httpService.fetchPlayUrl(`/play${tempUrl}`);
 
   }
 }
