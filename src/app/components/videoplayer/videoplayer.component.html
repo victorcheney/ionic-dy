@@ -1,0 +1,8 @@
+<vg-player class="videoplayer" *ngIf="currentItem.src">
+  <!-- <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls> -->
+  <!-- <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4"> -->
+  <!-- <source src="https://bobo.kukucdn.com/20190301/6733_3f9641a7/index.m3u8"  type="video/m3u8"> -->
+  <!-- </video> -->
+  <video #media id="singleVideo" preload="auto" controls [vgHls]="currentItem.src"
+    type="video/mp4"> </video>
+</vg-player>

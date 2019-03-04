@@ -39,7 +39,9 @@
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hls.js/dist/hls.min.js"
+            ]
           },
           "configurations": {
             "production": {

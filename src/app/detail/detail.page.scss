@@ -67,6 +67,21 @@ ion-card-header {
   border-bottom-right-radius: 15px;
 }
 
+.seletc-video.selected {
+  color: #DB4437;
+
+  &::before {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    content: ' ';
+    width: 6px;
+    height: 6px;
+    background-color: #DB4437;
+    border-radius: 100%;
+  }
+}
+
 .relate-list {
 
   ion-img {

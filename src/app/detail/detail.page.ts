@@ -13,9 +13,13 @@ export class DetailPage implements OnInit {
 
   private id;
   detailInfo: any = {};
-  imgUrl = 'http://iph.href.lu/80x100';
   image;
   loading;
+  movieListLength: number = 0;
+  playUrl: string;
+  actionPlayUrl: string;
+  selIndex: number = 0;
+  
   constructor(private httpService: HttpService,
     private routeInfor: ActivatedRoute,
     private sanitization: DomSanitizer,
@@ -26,6 +30,12 @@ export class DetailPage implements OnInit {
     this.httpService.fetchDetail(this.id)
       .then(data => {
         this.detailInfo = data;
+        
+        if(this.detailInfo.moviePlayUrls) {
+          this.movieListLength = this.detailInfo.moviePlayUrls.length;
+          this.playUrl = this.detailInfo.moviePlayUrls[0].playUrl; // 默认
+        }
+
         this.image = this.sanitization.bypassSecurityTrustStyle(`url(${this.detailInfo.cover})`);
 
       })
@@ -53,4 +63,23 @@ export class DetailPage implements OnInit {
     await loading.present();
   } */
 
+
+  videoPlay(playurl: any, index: number) {
+
+    this.playUrl = playurl;
+    this.selIndex = index;
+
+    // let tempUrl = this.playUrl.split('com')[1];
+
+    // this.httpService.fetchPlayUrl(`/play${tempUrl}`)
+    // .then(resp => {
+    //   this.actionPlayUrl = JSON.stringify(resp);
+    // })
+    // .catch(err => {
+
+    // });
+
+    // https://m.kankanwu.com/Action/darenwuzhongguobanlaoshou/player-0-1.html
+
+  }
 }

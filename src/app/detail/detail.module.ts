@@ -7,6 +7,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { DetailPage } from './detail.page';
 
+/* 视频模块 */
+import {VgCoreModule} from 'videogular2/core';
+import {VgControlsModule} from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
+import { VgStreamingModule  } from 'videogular2/streaming';
+
+import { VideoplayerComponent } from '../components/videoplayer/videoplayer.component'
+import { from } from 'rxjs';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,8 +29,14 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+
+    VgCoreModule,
+    VgControlsModule,
+    VgBufferingModule,
+    VgOverlayPlayModule,
+    VgStreamingModule
   ],
-  declarations: [DetailPage]
+  declarations: [DetailPage, VideoplayerComponent]
 })
 export class DetailPageModule {}

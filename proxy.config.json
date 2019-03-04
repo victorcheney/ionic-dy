@@ -12,5 +12,12 @@
       "^/details": ""
     },
     "changeOrigin": true
+  },
+  "/play": {
+    "target": "https://m.kankanwu.com/",
+    "pathRewrite": {
+      "^/play": ""
+    },
+    "changeOrigin": true
   }
 }

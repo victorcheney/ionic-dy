@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import cheerio from 'cheerio';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -133,6 +134,21 @@ export class HttpService {
           reject(err);
         })
     });
+  }
+
+  // 获取视频地址
+  fetchPlayUrl(url: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get(url, {})
+      .subscribe(resp => {
+
+        const $ = cheerio.load(resp.text());
+        let url = $('.playerbox iframe').attr('src').split('=')[1];
+        resolve(url);
+      }, err => {
+        reject(err);
+      })
+    })
   }
 
 
