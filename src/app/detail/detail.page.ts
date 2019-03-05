@@ -11,6 +11,8 @@ import { LoadingController } from '@ionic/angular';
 })
 export class DetailPage implements OnInit {
 
+  
+
   private id;
   detailInfo: any = {};
   image;
