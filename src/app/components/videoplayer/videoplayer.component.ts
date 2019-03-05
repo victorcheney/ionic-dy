@@ -81,9 +81,9 @@ export class VideoplayerComponent implements OnInit {
   }
 
   async getPlayUrl(url: string) {
-    let tempUrl = url.split('com')[1];
+    const tempUrl = url.split('com')[1];
 
-    await this.httpService.fetchPlayUrl(`/play${tempUrl}`);
+    return this.httpService.fetchPlayUrl(`/play${tempUrl}`);
 
   }
 }
