@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { VgAPI } from 'videogular2/core';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import { HttpService } from '../../../providers/http.service';
 
 export interface IMedia {
@@ -18,7 +20,10 @@ export class VideoplayerComponent implements OnInit {
   @Input() seletedindex: number;
   @Input() videolist: any = [];
 
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpService: HttpService,
+    private sanitization: DomSanitizer
+  ) { }
 
   ngOnInit() {
 
@@ -38,20 +43,23 @@ export class VideoplayerComponent implements OnInit {
       });
     }
 
-    this.currentItem = this.playlist[this.currentIndex];
-    this.onClickPlaylistItem(this.playlist[this.seletedindex], this.seletedindex);
+    if (this.playlist.length > 0) {
+      this.currentItem = this.playlist[this.currentIndex];
+      this.onClickPlaylistItem(this.playlist[this.seletedindex], this.seletedindex);
+    }
 
   }
 
   playlist: Array<IMedia> = [];
   currentIndex = 0;
   currentItem: IMedia = {
+
     title: '',
     src: '',
     type: ''
   };
   api: VgAPI;
-  actionPlayUrl: string;
+  actionPlayUrl: any;
 
 
   onPlayerReady(api: VgAPI) {
@@ -86,8 +94,10 @@ export class VideoplayerComponent implements OnInit {
 
     this.getPlayUrl(this.currentItem.src)
       .then(resp => {
-        debugger
         this.currentItem.src = JSON.stringify(resp);
+        this.actionPlayUrl = this.currentItem.src.replace(/\"/g, '');
+        
+        // this.actionPlayUrl = this.sanitization.bypassSecurityTrustUrl(this.currentItem.src);
       })
       .catch(err => {
 

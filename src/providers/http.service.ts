@@ -20,8 +20,10 @@ export class HttpService {
   fetchHomeData(url: string, params: any) {
     return new Promise((resolve, reject) => {
       this.http.get(url, { search: params })
+      // this.http.get('https://www.baidu.com/', { })
         // .map(res => res.json())
         .subscribe(data => {
+
           const $ = cheerio.load(data.text());
 
           // 轮播数据
@@ -150,6 +152,4 @@ export class HttpService {
       })
     })
   }
-
-
 }

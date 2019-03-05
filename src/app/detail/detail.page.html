@@ -11,7 +11,7 @@
     <ion-img class="cover-bg" [src]="detailInfo.cover"></ion-img>
   </div>
   <!-- 封面 -->
-  <ion-card class="detail-banner" *ngIf="!actionPlayUrl">
+  <ion-card class="detail-banner" *ngIf="!playUrl">
     <ion-card-content>
       <ion-grid no-padding>
         <ion-row no-padding>
@@ -44,7 +44,7 @@
   </ion-card>
 
   <!-- 视频播放 -->
-  <ion-card class="videoplayer" >
+  <ion-card class="videoplayer" *ngIf="playUrl" >
     <ion-card-content>
       <app-videoplayer [videolist]="detailInfo.moviePlayUrls" [seletedindex]="selIndex"></app-videoplayer>
     </ion-card-content>

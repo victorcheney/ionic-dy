@@ -48,7 +48,7 @@
 
 3、重启服务即可
 
-## 利用cheerio爬取数据时 报 `Module not found: Error: Can't resolve 'stream' in ... ` 错误
+### 利用cheerio爬取数据时 报 `Module not found: Error: Can't resolve 'stream' in ... ` 错误
 
 https://www.jianshu.com/p/ddf574337c47
 
@@ -73,4 +73,31 @@ ts文件
 
 ```code
  this.image = this.sanitization.bypassSecurityTrustStyle(`url(${this.detailInfo.cover})`)
+```
+
+5、async\await
+
+[https://segmentfault.com/a/1190000011526612?utm_source=tag-newest](https://segmentfault.com/a/1190000011526612?utm_source=tag-newest)
+
+[https://www.jianshu.com/p/2afb088abd08](https://www.jianshu.com/p/2afb088abd08)
+
+```code
+async function sleep() {
+    console.log(1);
+    await new Promise(resolve => {
+        setTimeout(() => {
+            console.log(2);
+            resolve();
+        }, 1000)
+    })
+    console.log(3);
+}
+
+sleep();
+
+// 1
+// > Promise {<pending>}
+// 2
+// 3
+
 ```

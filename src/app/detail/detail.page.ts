@@ -20,8 +20,8 @@ export class DetailPage implements OnInit {
   movieListLength: number = 0;
   playUrl: string;
   actionPlayUrl: string;
-  selIndex: number = 0;
-  
+  selIndex: number;
+
   constructor(private httpService: HttpService,
     private routeInfor: ActivatedRoute,
     private sanitization: DomSanitizer,
@@ -35,7 +35,7 @@ export class DetailPage implements OnInit {
         
         if(this.detailInfo.moviePlayUrls) {
           this.movieListLength = this.detailInfo.moviePlayUrls.length;
-          this.playUrl = this.detailInfo.moviePlayUrls[0].playUrl; // 默认
+          // this.playUrl = this.detailInfo.moviePlayUrls[0].playUrl; // 默认
         }
 
         this.image = this.sanitization.bypassSecurityTrustStyle(`url(${this.detailInfo.cover})`);

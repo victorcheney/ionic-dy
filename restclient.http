@@ -1,0 +1,36 @@
+
+
+###
+POST https://www.fmbiz.com.cn:10227/sold/fmctrl/api/sold/checkCode
+External-Key: ELbc8c1448-adbe-4d39-9990-967c3278d70a
+
+{
+    "codeId": "14131",
+    "cmdtyTypeId": "10001",
+    "level": ""
+}
+
+###
+POST https://192.168.3.100:8443/sold/fmctrl/api/sold/checkCode
+External-Key: EL41c2868f-d7f0-41ee-97b6-e77c751f6ebd
+
+{
+    "codeId": "14131",
+    "cmdtyTypeId": "10001",
+    "level": ""
+}
+
+###
+GET https://www.fmbiz.com.cn/service/api/dashboard/v1/dashboards?_pagesize=1000
+External-Key: EL6cfba5d9-5c22-40ab-91c7-ad9680334cfd
+
+
+###
+POST https://192.168.3.100/service/sold/fmctrl/api/sold/query?_offset=0&_pagesize=10&search=
+External-Key: EL6cfba5d9-5c22-40ab-91c7-ad9680334cfd
+
+
+###
+GET https://m.kankanwu.com
+
+###
