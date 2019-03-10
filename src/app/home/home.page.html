@@ -6,22 +6,25 @@
     <ion-title>
       V视频
     </ion-title>
+    <ion-buttons slot="end" [routerLink]="[ '/searchpage' ]">
+      <ion-icon class="ion-float-right font-24" name="search"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="h-nav">
+  <!-- <div class="h-nav">
     <a href="javascript:void(0)" *ngFor="let item of navs; let i = index" [ngClass]="{'active': tabIndex == i}" (click)="toggleTabs(i)">
       <span>{{item.text}}</span>
     </a>
-  </div>
+  </div> -->
 
   <!-- start 轮播 -->
   <app-home-slider [datas]="bannerData"></app-home-slider>
   <!-- end 轮播 -->
 
   <div class="home-tabs">
-    <ion-tab-button tab="settings" *ngFor="let item of homeTabs; let i = index">
+    <ion-tab-button [routerLink]="[ '/pagelists', item.id ]" *ngFor="let item of homeTabs; let i = index">
       <ion-label>{{item.text}}</ion-label>
       <ion-icon name="{{ item.icon }}"></ion-icon>
     </ion-tab-button>
@@ -34,7 +37,7 @@
       <ion-icon no-padding slot="start" name="{{list.icon}}"></ion-icon>
       <span>{{ list.text }}</span>
     </div>
-    <ion-grid no-padding>
+    <ion-grid>
       <ion-row>
         <ion-col size="4" *ngFor="let item of list.data">
           <ion-card no-margin [routerLink]="['/detail', item.id]">

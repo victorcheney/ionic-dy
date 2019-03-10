@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="back-button" [routerLink]="[ '/home' ]" slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-searchbar class="search-bar" [(ngModel)]="searchQuery" debounce="500"
+      placeholder="搜索"></ion-searchbar> <!-- (ionInput)="getItems($event)" -->
+    <ion-buttons slot="end" (click)="getItems(searchQuery)">
+      搜索
+      <!-- <ion-icon name="funnel"></ion-icon> -->
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content no-padding>
+  <!-- start 历史记录 -->
+  <div>
+    <div class="search-history">
+      <div>
+        <ion-icon color="danger" name="time"></ion-icon>
+        <ion-text>搜索历史</ion-text>
+      </div>
+      <ion-text>清除所有</ion-text>
+    </div>
+    <div class="search-targs">
+      <span *ngFor="let item of historys" (click)="selectHistoryItem(item.text)">
+        {{ item.text }}
+        <ion-icon name="close"></ion-icon>
+      </span>
+    </div>
+  </div>
+  <!-- end 历史记录 -->
+
+  <!-- start 搜索结果 -->
+
+  <!-- end 搜索结果 -->
+</ion-content>

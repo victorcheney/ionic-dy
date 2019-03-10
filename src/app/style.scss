@@ -1,8 +1,27 @@
-// app-root {
-  .menu-header {
-    min-height: 108px;
-    background-image: url(../assets/menu-bg.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
+ion-item {
+  // --background: #dddddd;
+  --border-width: 0;
+  --border-style: none;
+  --background-activated: #F5F5F5;
+}
+ion-icon {
+  font-size: 24px;
+}
+ion-header {
+  &::after {
+    background-image: none;
   }
-// }
+}
+.menu-header {
+  min-height: 168px;
+  background-image: url(../assets/menu-bg.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.selected {
+  --background: #F5F5F5;
+  color: #DB4437;
+  ion-icon {
+    color: #DB4437;
+  }
+}

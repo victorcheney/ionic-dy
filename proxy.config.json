@@ -19,5 +19,19 @@
       "^/play": ""
     },
     "changeOrigin": true
+  },
+  "/pagelist": {
+    "target": "https://www.kankanwu.com/",
+    "pathRewrite": {
+      "^/pagelist": ""
+    },
+    "changeOrigin": true
+  },
+  "/search": {
+    "target": "https://www.kankanwu.com/",
+    "pathRewrite": {
+      "^/search": ""
+    },
+    "changeOrigin": true
   }
 }

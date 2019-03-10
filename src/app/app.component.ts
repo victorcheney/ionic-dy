@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -38,12 +40,28 @@ export class AppComponent {
     } */
   ];
 
+  activeRoute: any = '/home';
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
   ) {
     this.initializeApp();
+
+    // 监听路由变化
+    this.router.events
+      /* .pipe(
+        filter((event) => event instanceof NavigationEnd)
+      ) */
+      .subscribe((event: NavigationEnd) => {
+        //do something
+        if (event.url) {
+          this.activeRoute = event.url;
+          console.log(this.activeRoute);
+        }
+      });
   }
 
   initializeApp() {

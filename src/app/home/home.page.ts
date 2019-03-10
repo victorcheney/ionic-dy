@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../../providers/http.service';
-import { ArrayType } from '@angular/compiler';
 
 
 @Component({

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import cheerio from 'cheerio';
+import { resolve, reject } from 'q';
 
 
 
@@ -20,7 +21,7 @@ export class HttpService {
   fetchHomeData(url: string, params: any) {
     return new Promise((resolve, reject) => {
       this.http.get(url, { search: params })
-      // this.http.get('https://www.baidu.com/', { })
+        // this.http.get('https://www.baidu.com/', { })
         // .map(res => res.json())
         .subscribe(data => {
 
@@ -142,11 +143,101 @@ export class HttpService {
   fetchPlayUrl(url: string) {
     return new Promise((resolve, reject) => {
       this.http.get(url, {})
-      .subscribe(resp => {
+        .subscribe(resp => {
 
+          const $ = cheerio.load(resp.text());
+          let url = $('.playerbox iframe').attr('src').split('=')[1];
+          resolve(url);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
+  // 获取视频列表
+  fetchPageList({ pageSize = 25, pageIndex = 1, type = '', status = '', area = '', plot = '', year = '', orderBy = 'hits' }) {
+    const mapType = {
+      movie: 1,
+      tv: 2,
+      comic: 3,
+      variety: 4,
+    }
+
+    return new Promise((resolve, reject) => {
+      this.http.get(`/pagelist/index.php?s=Showlist-show-id-${mapType[type]}-mcid-${area}-lz-${status}-area-${plot}-year-${year}-letter--order-${orderBy}-picm-1-p-${pageIndex}.html`)
+        .subscribe(resp => {
+          const $ = cheerio.load(resp.text());
+          const data = $('#contents li').map((i, el) => {
+            const video = $(el).find('a');
+            return ({
+              "id": video.attr('href'),
+              "name": video.find('img').attr('alt'),
+              "movieTitle": $(el).find('.state').text(),
+              "cover": this.getHref(video.find('img').attr('src'), 'https://kankanwu.com/'),
+            })
+          }).get();
+
+          resolve(data);
+        }, err => {
+          reject(err);
+        });
+    })
+  }
+
+  // 搜索
+  /* const GetSearch = async ({ pageSize = 25, pageIndex = 1, SearchKey }) => {
+    const html = await fetch(WEBM + `/vod-search-wd-${SearchKey}-p-${pageIndex}.html`).then(d => d.text());
+    const $ = cheerio.load(html);
+    const getInfo = (info, i) => info.find('p').eq(i).find('a').map((i, el) => $(el).text()).get().join(' ');
+    const data = $('#resize_list li').map((i, el) => {
+      const video = $(el).find('a');
+      const info = $(el).find('.list_info');
+      return ({
+        "ID": video.attr('href'),
+        "Name": video.attr('title'),
+        "Cover": getHref(video.find('img').attr('src'), WEB),
+        "Info": {
+          "Type": getInfo(info, 1),
+          "Art": getInfo(info, 2),
+          "Status": info.find('p').eq(3).text(),
+          "Time": info.find('p').eq(4).text(),
+        }
+      })
+    }).get()
+    const isEnd = pageIndex > $('.ui-vpages span').text();
+    return {
+      list: data,
+      isEnd: isEnd
+    };
+  } */
+  search(searchKey) {
+    let pageSize = 25, pageIndex = 1;
+    return new Promise((resolve, reject) => {
+      this.http.get(`/search/index.php?s=vod-search-wd-海王.html`)
+      .subscribe(resp => {
         const $ = cheerio.load(resp.text());
-        let url = $('.playerbox iframe').attr('src').split('=')[1];
-        resolve(url);
+        const getInfo = (info, i) => info.find('p').eq(i).find('a').map((i, el) => $(el).text()).get().join(' ');
+        const data = $('#resize_list li').map((i, el) => {
+          const video = $(el).find('a');
+          const info = $(el).find('.list_info');
+          return ({
+            "id": video.attr('href'),
+            "name": video.attr('title'),
+            "cover": this.getHref(video.find('img').attr('src'), 'https://www.kankanwu.com/'),
+            "info": {
+              "type": getInfo(info, 1),
+              "art": getInfo(info, 2),
+              "status": info.find('p').eq(3).text(),
+              "time": info.find('p').eq(4).text(),
+            }
+          })
+        }).get()
+        const isEnd = pageIndex > $('.ui-vpages span').text();
+
+        resolve({
+          data: data,
+          isend: isEnd
+        });
       }, err => {
         reject(err);
       })

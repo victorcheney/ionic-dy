@@ -24,6 +24,9 @@ const routes: Routes = [
     loadChildren: './theme/theme.module#ThemePageModule'
   },
   { path: 'detail/:id', loadChildren: './detail/detail.module#DetailPageModule' },
+  { path: 'pagelists/:type', loadChildren: './pagelists/pagelists.module#PagelistsPageModule' },  { path: 'searchpage', loadChildren: './searchpage/searchpage.module#SearchpagePageModule' },
+
+
 
   /* ,
     {
