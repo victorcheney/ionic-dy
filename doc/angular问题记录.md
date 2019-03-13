@@ -54,7 +54,7 @@ https://www.jianshu.com/p/ddf574337c47
 
 cheerio 最新为 1.0.0-rc2版本，降到0.22.0版本即可解决上述问题
 
-4、动态加载背景图 background-image
+### 动态加载背景图 background-image
 
 引入安全模块,DomSanitizer有助于防止跨站点脚本安全漏洞（XSS），通过清除值以便在不同的DOM上下文中安全使用。
 
@@ -75,7 +75,7 @@ ts文件
  this.image = this.sanitization.bypassSecurityTrustStyle(`url(${this.detailInfo.cover})`)
 ```
 
-5、async\await
+### async\await
 
 [https://segmentfault.com/a/1190000011526612?utm_source=tag-newest](https://segmentfault.com/a/1190000011526612?utm_source=tag-newest)
 
@@ -101,3 +101,23 @@ sleep();
 // 3
 
 ```
+
+### 请求字符串非json格式数据
+
+get请求默认为返回json格式数据，如果请求的是 string 类型，接口返回成功，但是会报以下错误
+
+```code
+ERROR Error: Uncaught (in promise): HttpErrorResponse: {"headers":{"normalizedNames":{},"lazyUpdate":null},"status":200,"statusText":"OK","url":"http://localhost:8100/api","ok":false,"name":"HttpErrorResponse","message":"Http failure during parsing for http://localhost:8100/api"
+```
+
+解决方法：
+
+设置 `responseType` 参数为 `text`
+
+```code
+ this.http.get(filename, {responseType: 'text'})
+```
+
+注：在之前的版本 如果使用的是 `HttpModule` 不存在这种情况 `import { Http } from '@angular/http'`
+
+[https://www.jianshu.com/p/f0f81a63cbcb](https://www.jianshu.com/p/f0f81a63cbcb)
