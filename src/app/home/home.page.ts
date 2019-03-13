@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpService } from '../../providers/http.service';
+import { DyHttpService } from '../../providers/http.service';
+// import { HttpService1 } from '../../providers/http.service.1';
 
 
 @Component({
@@ -7,6 +8,7 @@ import { HttpService } from '../../providers/http.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
+
 export class HomePage {
   homedatas: any;
 
@@ -50,14 +52,34 @@ export class HomePage {
   private tabIndex: number = 0;
   URLM: string = '/api';
   bannerData: any;
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: DyHttpService/* , private httpService1: HttpService1 */) {
     this.fetchHomeData(this.URLM, {});
+
+
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     
+    // test
+    /* this.httpService1.fetchDatasTest('https://m.kankanwu.com')
+    .then(resp => {
+      alert(`000:${JSON.stringify(resp)}`)
+      this.homedatas = resp;
+        this.bannerData = this.homedatas.solling.list
+
+        this.navs[1]['data'] = this.homedatas.movie.list;
+        this.navs[2].data = this.homedatas.tv.list;
+        this.navs[3].data = this.homedatas.comic.list;
+        this.navs[4].data = this.homedatas.variety.list;
+
+        this.homeTabs = JSON.parse(JSON.stringify(this.navs))
+        this.homeTabs.splice(0, 1);
+    })
+    .catch(error => {
+      alert(`111:${JSON.stringify(error)}`)
+    }) */
   }
 
   fetchHomeData(url: string, params: any) {

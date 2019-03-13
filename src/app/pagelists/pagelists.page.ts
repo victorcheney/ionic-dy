@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../../providers/http.service'
+import { DyHttpService } from '../../providers/http.service'
 
 @Component({
   selector: 'app-pagelists',
   templateUrl: './pagelists.page.html',
-  styleUrls: ['./pagelists.page.scss'],
+  styleUrls: ['./pagelists.page.scss']
 })
 export class PagelistsPage implements OnInit {
 
@@ -32,7 +32,7 @@ export class PagelistsPage implements OnInit {
   dataLists: any;
   params = { pageSize: 25, pageIndex: 1, type: '', status: '', trea: '', plot: '', year: '', orderBy: 'hits' }
 
-  constructor(private routeInfor: ActivatedRoute, private httpService: HttpService) {
+  constructor(private routeInfor: ActivatedRoute, private httpService: DyHttpService) {
     this.routerType = this.routeInfor.snapshot.params['type'];
     this.currentName = this.types[this.routerType].name;
     this.params.type =  this.routerType;

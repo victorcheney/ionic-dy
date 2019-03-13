@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../../providers/http.service';
+import { DyHttpService } from '../../providers/http.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
-  styleUrls: ['./detail.page.scss'],
+  styleUrls: ['./detail.page.scss']
 })
 export class DetailPage implements OnInit {
 
@@ -22,7 +22,7 @@ export class DetailPage implements OnInit {
   actionPlayUrl: string;
   selIndex: number;
 
-  constructor(private httpService: HttpService,
+  constructor(private httpService: DyHttpService,
     private routeInfor: ActivatedRoute,
     private sanitization: DomSanitizer,
     private loadingController: LoadingController) {

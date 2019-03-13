@@ -2,7 +2,7 @@ import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { VgAPI } from 'videogular2/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { HttpService } from '../../../providers/http.service';
+import { DyHttpService } from '../../../providers/http.service';
 
 export interface IMedia {
   title: string;
@@ -21,7 +21,7 @@ export class VideoplayerComponent implements OnInit {
   @Input() videolist: any = [];
 
   constructor(
-    private httpService: HttpService,
+    private httpService: DyHttpService,
     private sanitization: DomSanitizer
   ) { }
 
