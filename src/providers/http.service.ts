@@ -9,12 +9,12 @@ import cheerio from 'cheerio';
 })
 export class DyHttpService {
   // _this: this;
-  // WEBM: string = 'https://m.kankanwu.com';
-  // WEB: string = 'https://kankanwu.com';
+  WEBM: string = 'https://m.kankanwu.com';
+  WEB: string = 'https://kankanwu.com';
 
   // dev
-  WEBM: string =  '';
-  WEB: string = '';
+  // WEBM: string =  '';
+  // WEB: string = '';
 
   constructor(private http: HttpClient) {
 
@@ -23,7 +23,7 @@ export class DyHttpService {
   // 获取首页数据
   fetchHomeData(url: string, params: any) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.WEBM + url, { responseType: 'text' })
+      this.http.get(this.WEBM, { responseType: 'text' })
         // this.http.get('https://www.baidu.com/', { })
         // .map(res => res.json())
         .subscribe(data => {

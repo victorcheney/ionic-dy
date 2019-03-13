@@ -121,3 +121,7 @@ ERROR Error: Uncaught (in promise): HttpErrorResponse: {"headers":{"normalizedNa
 注：在之前的版本 如果使用的是 `HttpModule` 不存在这种情况 `import { Http } from '@angular/http'`
 
 [https://www.jianshu.com/p/f0f81a63cbcb](https://www.jianshu.com/p/f0f81a63cbcb)
+
+### ionic cordova build android --prod
+
+会启动本地服务 `http://loaclhost/`
