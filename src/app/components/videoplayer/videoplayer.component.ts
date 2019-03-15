@@ -3,6 +3,7 @@ import { VgAPI } from 'videogular2/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { DyHttpService } from '../../../providers/http.service';
+import { HttpService1 } from '../../../providers/http.service.1';
 
 export interface IMedia {
   title: string;
@@ -21,7 +22,7 @@ export class VideoplayerComponent implements OnInit {
   @Input() videolist: any = [];
 
   constructor(
-    private httpService: DyHttpService,
+    private httpService: HttpService1,
     private sanitization: DomSanitizer
   ) { }
 
@@ -107,7 +108,8 @@ export class VideoplayerComponent implements OnInit {
   async getPlayUrl(url: string) {
     const tempUrl = url.split('com')[1];
 
-    return this.httpService.fetchPlayUrl(`/play${tempUrl}`);
+    // return this.httpService.fetchPlayUrl(`/play${tempUrl}`);
+    return this.httpService.fetchPlayUrl(`${tempUrl}`);
 
   }
 }

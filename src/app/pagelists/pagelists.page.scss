@@ -10,6 +10,15 @@ ion-buttons {
   }
 }
 
+.home-card-list-title {
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: #DB4437;
+}
+
 .page-card-list {
   background-color: #F7F7F7;
 

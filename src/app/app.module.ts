@@ -14,6 +14,8 @@ import { HTTP } from "@ionic-native/http/ngx";
 import { Dialogs } from '@ionic-native/dialogs/ngx';
 
 import { DyHttpService } from '../providers/http.service';
+import { HttpService1 } from '../providers/http.service.1';
+import { CheerioService } from '../providers/cheerio.service';
 
 
 @NgModule({
@@ -30,7 +32,10 @@ import { DyHttpService } from '../providers/http.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
 
-    HTTP, Dialogs, DyHttpService
+    HTTP, Dialogs, 
+    DyHttpService, 
+    HttpService1,
+    CheerioService
   ],
   bootstrap: [AppComponent]
 })

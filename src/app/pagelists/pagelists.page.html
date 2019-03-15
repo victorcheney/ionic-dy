@@ -10,19 +10,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="page-card-list" no-padding >
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" *ngFor="let item of dataLists">
-        <ion-card no-margin [routerLink]="['/detail', item.id]">
-          <ion-card-content no-padding>
-            <ion-img [src]="item.cover"></ion-img>
-          </ion-card-content>
-          <ion-card-header>
-            <ion-card-subtitle>{{ item.name }}</ion-card-subtitle>
-          </ion-card-header>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content class="page-card-list" no-padding>
+
+  <div *ngFor="let data of dataLists">
+
+    <div class="home-card-list-title">
+      <strong>{{ data.name }}</strong>
+      <ion-icon no-padding slot="start" name="arrow-forward"></ion-icon>
+    </div>
+
+    <!-- 卡片 -->
+    <app-carditem [cardData]="data.list"></app-carditem>
+
+  </div>
 </ion-content>

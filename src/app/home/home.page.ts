@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DyHttpService } from '../../providers/http.service';
-// import { HttpService1 } from '../../providers/http.service.1';
+import { HttpService1 } from '../../providers/http.service.1';
 
 
 @Component({
@@ -52,8 +52,8 @@ export class HomePage {
   private tabIndex: number = 0;
   URLM: string = '/api';
   bannerData: any;
-  constructor(private httpService: DyHttpService/* , private httpService1: HttpService1 */) {
-    this.fetchHomeData(this.URLM, {});
+  constructor(private httpService: DyHttpService, private httpService1: HttpService1) {
+    // this.fetchHomeData(this.URLM, {});
 
 
   }
@@ -63,9 +63,8 @@ export class HomePage {
     //Add 'implements OnInit' to the class.
     
     // test
-    /* this.httpService1.fetchDatasTest('https://m.kankanwu.com')
+    this.httpService1.fetchHomeData()
     .then(resp => {
-      alert(`000:${JSON.stringify(resp)}`)
       this.homedatas = resp;
         this.bannerData = this.homedatas.solling.list
 
@@ -79,7 +78,7 @@ export class HomePage {
     })
     .catch(error => {
       alert(`111:${JSON.stringify(error)}`)
-    }) */
+    })
   }
 
   fetchHomeData(url: string, params: any) {

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { HomeSliderComponent } from '../components/home-slider/home-slider.component';
+import { CardmoduleModule } from '../components/cardmodule/cardmodule.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,9 @@ import { HomeSliderComponent } from '../components/home-slider/home-slider.compo
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+
+    CardmoduleModule
   ],
   declarations: [HomePage, HomeSliderComponent]
 })

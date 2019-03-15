@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PagelistsPage } from './pagelists.page';
+import { CardmoduleModule } from '../components/cardmodule/cardmodule.module';
+
 
 const routes: Routes = [
   {
@@ -19,7 +21,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    
+    CardmoduleModule
   ],
   declarations: [PagelistsPage]
 })

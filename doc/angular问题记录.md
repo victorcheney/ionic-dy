@@ -48,7 +48,7 @@
 
 3、重启服务即可
 
-### 利用cheerio爬取数据时 报 `Module not found: Error: Can't resolve 'stream' in ... ` 错误
+### 利用cheerio爬取数据时 报 `Module not found: Error: Can't resolve 'stream' in ...` 错误
 
 https://www.jianshu.com/p/ddf574337c47
 
@@ -125,3 +125,16 @@ ERROR Error: Uncaught (in promise): HttpErrorResponse: {"headers":{"normalizedNa
 ### ionic cordova build android --prod
 
 会启动本地服务 `http://loaclhost/`
+
+### 自定义模块中的组件中如果使用了路由，需要在模块中引入 `RouterModule`
+
+错误信息如下：
+
+```code
+core.js:15714 ERROR Error: Uncaught (in promise): Error: Template parse errors:
+Can't bind to 'routerLink' since it isn't a known property of 'ion-card'.
+```
+
+```code
+import { RouterModule } from '@angular/router';
+```
