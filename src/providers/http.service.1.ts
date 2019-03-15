@@ -75,26 +75,30 @@ export class HttpService1 {
 
   // 获取视频列表
   fetchPageList({ type = '' }) {
-    const mapType = {
-      movie: 1,
-      tv: 2,
-      comic: 3,
-      variety: 4,
-    }
 
     return new Promise((resolve, reject) => {
       this.http.get(this.WEBM + `/${type}/index.html`, {}, {})
-      .then(resp => {
+        .then(resp => {
 
-        const html = resp.data;
+          const html = resp.data;
 
-        resolve(this.cheerioService.parsePageList(html));        
+          if (type === 'dy' || type === 'dsj') {
+            resolve(this.cheerioService.parsePageList(html));
+          } else {
+            resolve(this.cheerioService.parsePageList2(html));
+          }
 
-      })
-      .catch(err => {
-        reject(err);
-      })
+
+        })
+        .catch(err => {
+          reject(err);
+        })
     })
+
+  }
+
+  // 获取分类列表
+  fetchCategoryList() {
 
   }
 

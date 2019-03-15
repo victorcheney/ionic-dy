@@ -85,7 +85,7 @@ export class CheerioService {
   }
 
   // 解析详情页数据
-  parseDetail(html, coverURL='https://www.kankanwu.com', playUrl='https://m.kankanwu.com', id) {
+  parseDetail(html, coverURL = 'https://www.kankanwu.com', playUrl = 'https://m.kankanwu.com', id) {
     try {
       const $ = cheerio.load(html);
       const MoviePlayUrls = $('#detail-list .play-list').eq(0).children('a').map((i, el) => {
@@ -144,10 +144,10 @@ export class CheerioService {
         return {
           name: el.find('h2 > a').attr('title'),
           url: el.find('h2 > a').attr('href'),
-          moreUrl: el.find('.more a').attr('href')
+          moreUrl: el.find('.more a').attr('href').replace('/index.html', '').replace('/', '')
         }
       })
-      
+
       // 列表
       const datas = $('.main .all_tab .list_tab_img').map((i, el) => {
         const ul = $(el);
@@ -169,9 +169,63 @@ export class CheerioService {
       });
 
       return resultList.splice(0, resultList.length);
-      
+
     }
-    catch(err) {
+    catch (err) {
+    }
+  }
+
+  // 综艺和动漫列表
+  parsePageList2(html) {
+    try {
+      const $ = cheerio.load(html);
+
+      // 列表
+      const ul = $('.main .list_vod .list_tab_img');
+      const list = ul.find('li').map((j, el) => {
+        return {
+          name: $(el).find('a').attr('title'),
+          id: $(el).find('a').attr('href'),
+          label: $(el).find('label[class="title"]').text(),
+          status: $(el).find('label[class="status"]').text(),
+          cover: $(el).find('img').attr('src'),
+          score: $(el).find('label[class="score"]').text()
+        };
+      })
+
+      return [{
+        list: list.splice(0, list.length)
+      }];
+
+    }
+    catch (err) {
+    }
+  }
+
+  // 获取分类列表
+  parseCategoryList(html) {
+    try {
+      const $ = cheerio.load(html);
+
+      // 列表
+      const ul = $('.main .list_vod .list_tab_img');
+      const list = ul.find('li').map((j, el) => {
+        return {
+          name: $(el).find('a').attr('title'),
+          id: $(el).find('a').attr('href'),
+          label: $(el).find('label[class="title"]').text(),
+          status: $(el).find('label[class="status"]').text(),
+          cover: $(el).find('img').attr('src'),
+          score: $(el).find('label[class="score"]').text()
+        };
+      })
+
+      return [{
+        list: list.splice(0, list.length)
+      }];
+
+    }
+    catch (err) {
     }
   }
 }

@@ -14,9 +14,10 @@
 
   <div *ngFor="let data of dataLists">
 
-    <div class="home-card-list-title">
+    
+    <div class="home-card-list-title" *ngIf="dataLists.length > 1">
       <strong>{{ data.name }}</strong>
-      <ion-icon no-padding slot="start" name="arrow-forward"></ion-icon>
+      <ion-icon no-padding slot="start" name="arrow-forward" [routerLink]="[ '/categorylist', data.moreUrl ]"></ion-icon>
     </div>
 
     <!-- 卡片 -->

@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons class="back-button" [routerLink]="[ '/home' ]" slot="start">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-buttons>
+      <ion-title>{{ currentName }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-icon name="funnel"></ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="page-card-list" no-padding>
+  
+    <div *ngFor="let data of dataLists">
+  
+      <!-- 卡片 -->
+      <app-carditem [cardData]="data.list"></app-carditem>
+  
+    </div>
+  </ion-content>
