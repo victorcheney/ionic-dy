@@ -23,6 +23,12 @@ ion-content {
   box-shadow: none !important;
 }
 
+ion-header .searchbar-md .searchbar-input {
+  box-shadow: none;       //去掉search 的阴影
+  border: 1px solid rgba(153, 153, 153, 0.5);
+  border-radius: 5px;
+}
+
 // }
 // }
 

@@ -101,3 +101,30 @@ sleep();
 // 3
 
 ```
+
+6、出现 `Property 'filter' does not exist on type 'Observable<Event>'` 错误
+
+For RXJS 5.x version:
+
+```code
+
+import 'rxjs/add/operator/filter';
+
+// Change how the operator is called
+filter.call(
+   this.router.events,
+   (event:Event) => event instanceof NavigationEnd
+).subscribe(x => console.log(x));
+```
+
+For RXJS 6.x version:
+
+```code
+import { filter } from 'rxjs/operators';
+
+// ..
+
+this.router.events.pipe(
+  filter((event:Event) => event instanceof NavigationEnd)
+).subscribe(x => console.log(x))
+```
