@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../../providers/http.service';
+import { DyHttpService } from '../../providers/http.service';
+import { HttpService1 } from '../../providers/http.service.1';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
-  styleUrls: ['./detail.page.scss'],
+  styleUrls: ['./detail.page.scss']
 })
 export class DetailPage implements OnInit {
 
@@ -22,7 +23,7 @@ export class DetailPage implements OnInit {
   actionPlayUrl: string;
   selIndex: number;
 
-  constructor(private httpService: HttpService,
+  constructor(private httpService: HttpService1,
     private routeInfor: ActivatedRoute,
     private sanitization: DomSanitizer,
     private loadingController: LoadingController) {
@@ -48,6 +49,20 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
 
+
+  /*   countTime(value) {
+      var secondTime = parseInt(value);
+      this.timer = setTimeout(() => {
+        secondTime--;
+        if (secondTime > 0) {
+          countTime(secondTime);
+        }
+        else {
+          clearTimeout(this.timer);
+        }
+      }, 1000);
+    }
+ */
 
   }
 

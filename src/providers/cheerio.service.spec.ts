@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DyHttpService } from './http.service';
+import { CheerioService } from './cheerio.service';
 
-describe('DyHttpService', () => {
+describe('CheerioService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DyHttpService = TestBed.get(DyHttpService);
+    const service: CheerioService = TestBed.get(CheerioService);
     expect(service).toBeTruthy();
   });
 });

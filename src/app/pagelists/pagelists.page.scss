@@ -1,13 +1,24 @@
 ion-icon {
   font-size: 24px;
 }
+
 ion-buttons {
   padding: 10px;
 }
+
 .back-button {
   &:focus {
     outline: none;
   }
+}
+
+.home-card-list-title {
+  line-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  color: #DB4437;
 }
 
 .page-card-list {
@@ -15,6 +26,7 @@ ion-buttons {
 
   ion-card {
     box-shadow: 0px 0px 20px #d9d9d9;
+
     &:focus {
       outline: none;
     }
@@ -23,6 +35,10 @@ ion-buttons {
   ion-icon {
     color: #DB4437;
     background: transparent;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   ion-img {
@@ -30,6 +46,7 @@ ion-buttons {
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
     }
+
     height: 154px;
     width: 100%;
   }

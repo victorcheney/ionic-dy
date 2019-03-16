@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpModule } from '@angular/http';
-
-/* 视频模块 */
-import {VgCoreModule} from 'videogular2/core';
-import {VgControlsModule} from 'videogular2/controls';
-import {VgOverlayPlayModule} from 'videogular2/overlay-play';
-import {VgBufferingModule} from 'videogular2/buffering';
+import { HttpClientModule } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -16,6 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HTTP } from "@ionic-native/http/ngx";
+import { Dialogs } from '@ionic-native/dialogs/ngx';
+
+import { DyHttpService } from '../providers/http.service';
+import { HttpService1 } from '../providers/http.service.1';
+import { CheerioService } from '../providers/cheerio.service';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -23,17 +25,17 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpModule,
-
-    VgCoreModule,
-    VgControlsModule,
-    VgBufferingModule,
-    VgOverlayPlayModule
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+
+    HTTP, Dialogs, 
+    DyHttpService, 
+    HttpService1,
+    CheerioService
   ],
   bootstrap: [AppComponent]
 })

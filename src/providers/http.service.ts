@@ -1,31 +1,34 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import cheerio from 'cheerio';
-import { resolve, reject } from 'q';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-  _this: this;
-  WEBM: 'https://m.kankanwu.com/';
-  WEB: 'https://kankanwu.com/';
+export class DyHttpService {
+  // _this: this;
+  // WEBM: string = 'https://m.kankanwu.com';
+  // WEB: string = 'https://kankanwu.com';
 
-  constructor(private http: Http) {
+  // dev
+  WEBM: string =  '';
+  WEB: string = '';
+
+  constructor(private http: HttpClient) {
 
   }
 
   // 获取首页数据
   fetchHomeData(url: string, params: any) {
     return new Promise((resolve, reject) => {
-      this.http.get(url, { search: params })
+      this.http.get(this.WEBM + url, { responseType: 'text' })
         // this.http.get('https://www.baidu.com/', { })
         // .map(res => res.json())
         .subscribe(data => {
 
-          const $ = cheerio.load(data.text());
+          const $ = cheerio.load(data);
 
           // 轮播数据
           const banner = $('.focusList>li').map((i, item) => {
@@ -91,9 +94,9 @@ export class HttpService {
   // 获取影片详情
   fetchDetail(id: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(`/details${id}`)
+      this.http.get(this.WEB + `/details${id}`, { responseType: 'text' })
         .subscribe(resp => {
-          const $ = cheerio.load(resp.text());
+          const $ = cheerio.load(resp);
           const MoviePlayUrls = $('#detail-list .play-list').eq(0).children('a').map((i, el) => {
             return ({
               "id": 'play_' + i,
@@ -142,10 +145,10 @@ export class HttpService {
   // 获取视频地址
   fetchPlayUrl(url: string) {
     return new Promise((resolve, reject) => {
-      this.http.get(url, {})
+      this.http.get(this.WEBM + url, { responseType: 'text' })
         .subscribe(resp => {
 
-          const $ = cheerio.load(resp.text());
+          const $ = cheerio.load(resp);
           let url = $('.playerbox iframe').attr('src').split('=')[1];
           resolve(url);
         }, err => {
@@ -164,9 +167,9 @@ export class HttpService {
     }
 
     return new Promise((resolve, reject) => {
-      this.http.get(`/pagelist/index.php?s=Showlist-show-id-${mapType[type]}-mcid-${area}-lz-${status}-area-${plot}-year-${year}-letter--order-${orderBy}-picm-1-p-${pageIndex}.html`)
+      this.http.get(this.WEB + `/pagelist/index.php?s=Showlist-show-id-${mapType[type]}-mcid-${area}-lz-${status}-area-${plot}-year-${year}-letter--order-${orderBy}-picm-1-p-${pageIndex}.html`, { responseType: 'text' })
         .subscribe(resp => {
-          const $ = cheerio.load(resp.text());
+          const $ = cheerio.load(resp);
           const data = $('#contents li').map((i, el) => {
             const video = $(el).find('a');
             return ({
@@ -185,37 +188,12 @@ export class HttpService {
   }
 
   // 搜索
-  /* const GetSearch = async ({ pageSize = 25, pageIndex = 1, SearchKey }) => {
-    const html = await fetch(WEBM + `/vod-search-wd-${SearchKey}-p-${pageIndex}.html`).then(d => d.text());
-    const $ = cheerio.load(html);
-    const getInfo = (info, i) => info.find('p').eq(i).find('a').map((i, el) => $(el).text()).get().join(' ');
-    const data = $('#resize_list li').map((i, el) => {
-      const video = $(el).find('a');
-      const info = $(el).find('.list_info');
-      return ({
-        "ID": video.attr('href'),
-        "Name": video.attr('title'),
-        "Cover": getHref(video.find('img').attr('src'), WEB),
-        "Info": {
-          "Type": getInfo(info, 1),
-          "Art": getInfo(info, 2),
-          "Status": info.find('p').eq(3).text(),
-          "Time": info.find('p').eq(4).text(),
-        }
-      })
-    }).get()
-    const isEnd = pageIndex > $('.ui-vpages span').text();
-    return {
-      list: data,
-      isEnd: isEnd
-    };
-  } */
   search(searchKey) {
     let pageSize = 25, pageIndex = 1;
     return new Promise((resolve, reject) => {
-      this.http.get(`/search/index.php?s=vod-search-wd-海王.html`)
+      this.http.get(this.WEBM + `/search/index.php?s=vod-search-wd-海王.html`, { responseType: 'text' })
       .subscribe(resp => {
-        const $ = cheerio.load(resp.text());
+        const $ = cheerio.load(resp);
         const getInfo = (info, i) => info.find('p').eq(i).find('a').map((i, el) => $(el).text()).get().join(' ');
         const data = $('#resize_list li').map((i, el) => {
           const video = $(el).find('a');

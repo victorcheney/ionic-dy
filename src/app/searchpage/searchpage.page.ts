@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../providers/http.service';
+import { DyHttpService } from '../../providers/http.service';
 
 @Component({
   selector: 'app-searchpage',
   templateUrl: './searchpage.page.html',
   styleUrls: ['./searchpage.page.scss'],
+  providers: [ DyHttpService ]
 })
 export class SearchpagePage implements OnInit {
 
@@ -18,7 +19,7 @@ export class SearchpagePage implements OnInit {
       text: '火影忍者'
     }];
 
-  constructor(private http: HttpService) {
+  constructor(private httpService: DyHttpService) {
     this.searchQuery = '海王';
   }
 
@@ -36,7 +37,7 @@ export class SearchpagePage implements OnInit {
   // 调用搜索接口
   fetchSearchData(searchKey) {
 
-    this.http.search(searchKey)
+    this.httpService.search(searchKey)
       .then(data => {
         // debugger
         this.searchResult = data;

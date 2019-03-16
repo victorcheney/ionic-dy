@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Dialogs } from '@ionic-native/dialogs/ngx';
 
 @Component({
   selector: 'app-root',
@@ -47,6 +47,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
+    private dialogs: Dialogs
   ) {
     this.initializeApp();
 
@@ -59,7 +60,6 @@ export class AppComponent {
         //do something
         if (event.url) {
           this.activeRoute = event.url;
-          console.log(this.activeRoute);
         }
       });
   }
@@ -68,6 +68,8 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // this.dialogs.alert('start');
     });
   }
 }
