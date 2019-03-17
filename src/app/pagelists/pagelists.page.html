@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons class="back-button" [routerLink]="[ '/home' ]" slot="start">
+    <!-- <ion-buttons class="back-button" [routerLink]="[ '/home' ]" slot="start">
       <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ currentName }}</ion-title>
     <ion-buttons slot="end">
@@ -14,10 +17,11 @@
 
   <div *ngFor="let data of dataLists">
 
-    
     <div class="home-card-list-title" *ngIf="dataLists.length > 1">
       <strong>{{ data.name }}</strong>
-      <ion-icon no-padding slot="start" name="arrow-forward" [routerLink]="[ '/categorylist', data.moreUrl ]"></ion-icon>
+      <ion-button fill="clear">
+        <ion-icon mode="ios" no-padding slot="start" name="arrow-forward" [routerLink]="[ '/categorylist', data.moreUrl ]"></ion-icon>
+      </ion-button>
     </div>
 
     <!-- 卡片 -->

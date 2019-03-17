@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons class="back-button" slot="start" [routerLink]="['/home']">
-      <ion-icon name="arrow-back"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ detailInfo.name }}</ion-title>
+    <!-- <ion-buttons class="back-button" slot="start" [routerLink]="['/home']">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-buttons> -->
+    {{ detailInfo.name }}
   </ion-toolbar>
 </ion-header>
 <ion-content no-padding>

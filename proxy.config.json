@@ -21,7 +21,7 @@
     "changeOrigin": true
   },
   "/pagelist": {
-    "target": "https://www.kankanwu.com/",
+    "target": "https://m.kankanwu.com/",
     "pathRewrite": {
       "^/pagelist": ""
     },
