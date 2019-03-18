@@ -50,10 +50,10 @@ export class HomePage {
 
   homeTabs: any;
   private tabIndex: number = 0;
-  URLM: string = '/api';
+  
   bannerData: any;
   constructor(private httpService: DyHttpService, private httpService1: HttpService1) {
-    // this.fetchHomeData(this.URLM, {});
+    this.fetchHomeData();
 
 
   }
@@ -63,7 +63,7 @@ export class HomePage {
     //Add 'implements OnInit' to the class.
     
     // test
-    this.httpService1.fetchHomeData()
+    /* this.httpService1.fetchHomeData()
     .then(resp => {
       this.homedatas = resp;
         this.bannerData = this.homedatas.solling.list
@@ -78,11 +78,11 @@ export class HomePage {
     })
     .catch(error => {
       alert(`111:${JSON.stringify(error)}`)
-    })
+    }) */
   }
 
-  fetchHomeData(url: string, params: any) {
-    this.httpService.fetchHomeData(url, params)
+  fetchHomeData() {
+    this.httpService.fetchHomeData()
       .then(resp => {
 
         this.homedatas = resp;
