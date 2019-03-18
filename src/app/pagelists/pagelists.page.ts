@@ -34,7 +34,7 @@ export class PagelistsPage implements OnInit {
   // params = { pageSize: 25, pageIndex: 1, type: '', status: '', trea: '', plot: '', year: '', orderBy: 'hits' }
   params = { type: ''}
 
-  constructor(private routeInfor: ActivatedRoute, private httpService: DyHttpService) {
+  constructor(private routeInfor: ActivatedRoute, private httpService: HttpService1) {
     this.routerType = this.routeInfor.snapshot.params['type'];
     this.currentName = this.types[this.routerType].name;
     this.params.type =  this.types[this.routerType].value;

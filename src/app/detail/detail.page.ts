@@ -23,7 +23,7 @@ export class DetailPage implements OnInit {
   actionPlayUrl: string;
   selIndex: number;
 
-  constructor(private httpService: DyHttpService,
+  constructor(private httpService: HttpService1,
     private routeInfor: ActivatedRoute,
     private sanitization: DomSanitizer,
     private loadingController: LoadingController) {

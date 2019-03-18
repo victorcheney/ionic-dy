@@ -102,7 +102,7 @@ sleep();
 
 ```
 
-### 出现 `Property 'filter' does not exist on type 'Observable<Event>'` 错误
+6、出现 `Property 'filter' does not exist on type 'Observable<Event>'` 错误
 
 For RXJS 5.x version:
 

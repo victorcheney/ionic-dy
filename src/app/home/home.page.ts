@@ -53,7 +53,9 @@ export class HomePage {
   URLM: string = '/api';
   bannerData: any;
   constructor(private httpService: DyHttpService, private httpService1: HttpService1) {
-    this.fetchHomeData();
+    // this.fetchHomeData(this.URLM, {});
+
+
   }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class HomePage {
     //Add 'implements OnInit' to the class.
     
     // test
-    /* this.httpService1.fetchHomeData()
+    this.httpService1.fetchHomeData()
     .then(resp => {
       this.homedatas = resp;
         this.bannerData = this.homedatas.solling.list
@@ -76,11 +78,11 @@ export class HomePage {
     })
     .catch(error => {
       alert(`111:${JSON.stringify(error)}`)
-    }) */
+    })
   }
 
-  fetchHomeData() {
-    this.httpService.fetchHomeData()
+  fetchHomeData(url: string, params: any) {
+    this.httpService.fetchHomeData(url, params)
       .then(resp => {
 
         this.homedatas = resp;
