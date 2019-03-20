@@ -40,3 +40,5 @@ ionic cordova run android -lc  真机调试
 ```code
 ionic serve
 ```
+
+[发布打包](https://victorcheney.github.io/2019/02/26/ionic%E5%8F%91%E5%B8%83release%E7%89%88%E6%9C%AC%E6%96%87%E6%A1%A3/)
